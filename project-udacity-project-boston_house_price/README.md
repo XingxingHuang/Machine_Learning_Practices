@@ -1,8 +1,8 @@
 # udacity-project-one-
 predict the boston house price
 
-[boston_housing.ipynb](./boston_housing.ipynb) 是我的作业提交。完成了基本的数据分析和处理工作。
-[review_one.md](./review_one.md) 是作业第一次结果，有几处修改意见，最后作业中都做了一一修改。
+>[boston_housing.ipynb](./boston_housing.ipynb) 是我的作业提交。完成了基本的数据分析和处理工作。
+>[review_one.md](./review_one.md) 是作业第一次结果，有几处修改意见，最后作业中都做了一一修改。
 
 
 项目提交
