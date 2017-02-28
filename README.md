@@ -10,3 +10,10 @@ udacity第一个项目，对boston房价进行预测。
 ###[project\_xgboost\_example](./project_xgboost_example)	
 Introduction to boosting methods
 Usingg xgboost to solve a read dataset and learn the basic processes.
+
+### [project-neural-networks-and-deep-learning](./project-neural-networks-and-deep-learning)
+Writing NN programes to fit hand writing.
+
+###[project-udacity-notmnist-dataset](./project-udacity-notmnist-dataset)
+using tensorflow to recognize hand writing.
+
