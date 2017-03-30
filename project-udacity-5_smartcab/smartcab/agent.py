@@ -41,14 +41,15 @@ class LearningAgent(Agent):
         # Update epsilon using a decay function of your choice
         # Update additional class parameters as needed
         # If 'testing' is True, set epsilon and alpha to 0
-        if testing == True:
+        if testing:
             self.epsilon = 0
             self.alpha = 0
         else:
             #self.epsilon = self.epsilon - 0.05
             #self.epsilon = self.alpha**self.t
             #self.epsilon = 1./self.t**2
-            self.epsilon = np.e**(-self.alpha*self.t)
+            ###self.epsilon = np.e**(-self.alpha*self.t)
+            self.epsilon = np.exp(-self.alpha*self.t)
             #self.epsilon = np.cos(self.alpha * self.t)
             self.t += 0.01 
 
@@ -104,8 +105,8 @@ class LearningAgent(Agent):
         # If it is not, create a new dictionary for that state
         #   Then, for each action available, set the initial Q-value to 0.0
         if not state in self.Q:
-            self.Q[state] = dict((k, 0.) for k in self.valid_actions)
-        
+            #self.Q[state] = dict((k, 0.) for k in self.valid_actions)
+            self.Q[state] = {act:0. for act in self.valid_actions}
         return
 
 
@@ -132,7 +133,8 @@ class LearningAgent(Agent):
                 if Q == maxQ:
                     maxQ_actions.append(action)
             action = random.choice(maxQ_actions)
-
+        # maxQ_actions = [act for act,val in self.Q[state].items() if val == maxQ]
+        # maxQ_actions = list( filter(lambda action:self.Q[state][action]==maxQ, self.Q[state].keys() ) )
         return action
 
 
@@ -201,7 +203,7 @@ def run():
     #   display      - set to False to disable the GUI if PyGame is enabled
     #   log_metrics  - set to True to log trial and simulation results to /logs
     #   optimized    - set to True to change the default log file name
-    sim = Simulator(env, update_delay = 0.01, log_metrics = True, display = False, optimized = True)
+    sim = Simulator(env, update_delay = 0.01, log_metrics = True, display = True, optimized = True)
     # update_delay: default 2.0
     # log_metrics: save the results
     # display: False to save time and not display the output
@@ -225,7 +227,7 @@ def run_q2():
 
     env.set_primary_agent(agent, enforce_deadline = True) 
 
-    sim = Simulator(env, update_delay = 0.01, log_metrics = True, display = True, optimized = True)
+    sim = Simulator(env, update_delay = 0.01, log_metrics = True, display = False, optimized = True)
 
     sim.run(n_test = 10)
     # n_test: limit the running time
