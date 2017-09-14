@@ -1,4 +1,5 @@
-# Download from Udacity:
+# One project of Intro to Machine Learning Course:
+# https://github.com/udacity/ud120-projects
 #   http://cn-static.udacity.com/mlnd/eigenfaces.zip
 
 
