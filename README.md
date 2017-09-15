@@ -21,7 +21,8 @@ Applied reinforcement learning to build a simulated vehicle navigation agent. Th
 * [Build a Digit Recognition Program](project-udacity-6_digit_recognition) 
 Designed and tested a model architecture that uses deep learning to solve the problem of reading and interpreting sequences of digits. Trained the model on Google's Street View House Numbers dataset. Validated the model by feeding newly-captured images taken by hand to test its performance on real-world sequences of digits. Implemented digit localization for the model as an improvement in accuracy for performance.
 
-
+### User Profile with Raw Search Terms Competition
+[User profile](project-Competition-User_Profile_Raw_Search_Terms) Developed two-layer stacking machine learning model with SVM, linear regression, Naive Bayes techniques. Generated comprehensible user profiles about gender, age, education based on 20k raw user search terms and captured valuable behavior patterns. Predicted user profiles with an accuracy above70% (top 5% in 900 teams).
 
 ### Kaggle\_Dogs\_Cats
 [project\_Kaggle\_Dogs\_Cats](./project_Kaggle_Dogs_Cats) 
