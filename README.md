@@ -1,5 +1,7 @@
 # Machine\_Learning\_Projects
 
+These are parts of machine learning projects I have done.
+
 ### Udacity Nano Degree Projects
 
 * [Classification using Iris flowers](project-udacity-1_iris) 
@@ -28,6 +30,10 @@ Designed and tested a model architecture that uses deep learning to solve the pr
 [project\_Kaggle\_Dogs\_Cats](./project_Kaggle_Dogs_Cats) 
 Kaggle competition, [Dogs vs. Cats Redux: Kernels Edition](https://www.kaggle.com/c/dogs-vs-cats-redux-kernels-edition/data), Rank top 2%.
 
+---
+
+# Other projects (easy)
+
 ### Facial Recognition 
 [Facial Recognition PCA](project_facial_Recognition_PCA) Get the eigenfaces with PCA method.
 
@@ -37,9 +43,9 @@ Introduction to boosting methods
 Usingg xgboost to solve a read dataset and learn the basic processes.
 
 ### Hadoop and Mapreduce
-[Intro to Hadoop and Mapreduce](exercise_introduction_hadoop_mapreduce)
+[Intro to Hadoop and Mapreduce](exercise_introduction_hadoop_mapreduce) This is course practice from Udacity
 
-### Neural Networks for hand writing (basic)
+### Neural Networks for hand writing (basic level)
 [project-neural-networks-and-deep-learning](./project-neural-networks-and-deep-learning) 
 Implimentation of neural networks and applied the model to handwriting datasets and compared the results to SVM and bayes methods. 
 
@@ -58,3 +64,7 @@ Udacity provide a list of resources: [github python](https://github.com/udacity/
 Python style [www.python.org](https://www.python.org/dev/peps/pep-0008/)
 
 [Python live program] (http://www.pythontutor.com/visualize.html#mode=edit) write Python/ Java code online.
+
+# Other resources for Data Scientist 
+[Data science primer](https://github.com/zipfian/data-science-primer) from Galvanize. This is a collection of self paced resources for anyone looking to get into data science. The materials assume an absolute beginner and are intended to prepare students for the Galvanize Data Science interview process: [http://www.galvanize.com/courses/data-science/](http://www.galvanize.com/courses/data-science/)
+
