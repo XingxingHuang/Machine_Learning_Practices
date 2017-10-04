@@ -96,6 +96,9 @@ class term(object):
     def stacking(self,X,Y,T,wv_X,wv_T,kind):
         """
         ensemble model:stacking
+        input:
+            trainset: X(tf-idf), Y, wv_X(word2vec). 
+            testset : T(tf-idf), wv_T(word2vec)
 
         """
         print 'fitting..'
@@ -107,7 +110,6 @@ class term(object):
 
         for i, bm in enumerate(models):
             clf = bm[1]
-
             S_test_i = np.zeros((T.shape[0], len(folds)))
             for j, (train_idx, test_idx) in enumerate(folds):
                 X_train = X[train_idx]
@@ -123,7 +125,7 @@ class term(object):
 
         print S_train.shape,S_test.shape
 
-        S_train = np.concatenate((S_train,wv_X),axis=1)
+        S_train = np.concatenate((S_train, wv_X), axis=1)
         S_test = np.concatenate((S_test, wv_T), axis=1)
 
         print S_train.shape,S_test.shape
@@ -133,6 +135,7 @@ class term(object):
         S_train = min_max_scaler.fit_transform(S_train)
         S_test = min_max_scaler.fit_transform(S_test)
         print 'scalering over!'
+        
         self.svc.fit(S_train, Y)
         yp= self.svc.predict(S_test)[:]
         return yp
@@ -151,7 +154,7 @@ class term(object):
         folds = list(skf.split(X,Y))
         score = np.zeros(self.fold_n)
         for j, (train_idx, test_idx) in enumerate(folds):
-            print '%i/%i fold' %(j + 1 self.fold_n)
+            print '%i/%i fold' %(j + 1, self.fold_n)
 
             X_train = X[train_idx]
             y_train = Y[train_idx]
@@ -171,8 +174,10 @@ class term(object):
             cur = sum(y_test == ypre) * 1.0 / len(ypre)
             score[j] = cur
 
-        print score
-        print kind, " score mean:", score.mean()
+        print kind, 
+        for s in score:
+            print ' %.3f' %s,
+        print "       %.4f"  %score.mean()
         return score.mean()
 
     def predict(self,X,Y,T,wv_X,wv_T,kind):
@@ -186,14 +191,16 @@ class term(object):
         :param kind: age/gender/education
         :return: array like ,predict of "kind"
         """
-        print 'predicting..向量化中...'
+        print 'predicting ...'
+        print 'train and transfer with tf-idf ... '
         vec = TfidfVectorizer(use_idf=True, sublinear_tf=False, max_features=60000, binary=True)
-
         vec.fit(X, Y)
         X = vec.transform(X)
         T = vec.transform(T)
 
         print 'train size',X.shape,T.shape
+        
+        print 'training stack model ...' 
         res = self.stacking(X, Y, T, wv_X, wv_T, kind)
         return res
 
