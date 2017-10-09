@@ -76,11 +76,16 @@ def word_cut(infile, label = 'train', outdir = './output/'):
         line = []
         words_keep = ""
         words = jieba.posseg.cut(data.iloc[i].values[0])
+        # another way to use jieba:
+        # jieba.analyse.set_stop_words("../extra_dict/stop_words.txt")
+        # jieba.analyse.set_idf_path("../extra_dict/idf.txt.big");
+        # c = jieba.analyse.extract_tags(sentence, topK = 20, withWeight = False, allowPOS = ('n'))
+        # 
         total = 0
         for word, flag in words:
             flag = flag.encode('utf8')
             POS[flag] = POS.get(flag, 0) + 1
-            if (flag[0] in allowPOS):
+            if (flag[0] in allowPOS and len(word)>=2):
                 words_keep = words_keep + " " + word
                 summary[flag[0]] = summary.get(flag[0], 0) + 1
             total += 1

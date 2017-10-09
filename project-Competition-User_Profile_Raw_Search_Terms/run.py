@@ -23,7 +23,7 @@ outdir = './output/'
 ##############################################
 ########## step 1: word cut ##########
 ##############################################
-step1 = False
+step1 = True
 if step1:
     from utils.wordcut import convert_csv, convert_labels, word_cut
 
@@ -139,7 +139,7 @@ avg is: 0.465280032988
 from utils import classify
 import multiprocessing
 
-step3 = True
+step3 = False
 if step3:
     print '--------- classify ----------'
     # word vectors
@@ -156,9 +156,9 @@ if step3:
     orders  = ["train"]  
     start = time.time()
     if "train" in orders:
-        termob1 = classify.term()
-        termob2 = classify.term()
-        termob3 = classify.term()
+        termob1 = classify.term(outdir = outdir)
+        termob2 = classify.term(outdir = outdir)
+        termob3 = classify.term(outdir = outdir)
         p1=multiprocessing.Process(target=termob1.validation,args=(data_gen, label_gen, w2vtrain_gen, 'gender',))
         p2=multiprocessing.Process(target=termob2.validation,args=(data_age, label_age, w2vtrain_age, 'age',))
         p3=multiprocessing.Process(target=termob3.validation,args=(data_edu, label_edu, w2vtrain_edu, 'edu',))

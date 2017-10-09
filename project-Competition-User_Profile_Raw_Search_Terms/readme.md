@@ -43,8 +43,62 @@ Submissions from different teams are evaluate on the final accuracy. The final a
 Only the predictions the same as the true values are counted as 1.
 
 ### Model Architecture
+
+This figure bellow shows the main steps of my pipline. The input is the `search terms` from 20k users. The main step is the feature engine and the modeling. Then the output is the three user profile like gender, age, education.
 ![](./image/fig1.png)
+
+The search terms are words that cannot be directly used as features, so we need to transfer them to digital features. Unlike English words we cannot use space to split the sentences. Here we use a powerful python tool `jieba` to split the search terms into words. In this process, I choose the word split mode, skip stop words, clean useless words. I only choose noun, verb, adj to reduce meaningless words. Here shows the top words in the search terms. We can see that people are focusing on many interesting topics like mobile phone, video, movie, english, game. These are what users usually do in the website. 
+
+```
+图片 57467
+手机 38520
+意思 38159
+视频 31863
+小说 31642
+下载 27277
+电影 20007
+中国 18782
+世界 17410
+重生 13598
+官网 13540
+百度 13517
+英语 13127
+电视剧 12443
+游戏 12413
+查询 12259
+做法 12081
+倾城 11572
+荣耀 11322
+大学 10598
+时间 10504
+微信 10473
+```
+
+We also check the distributions of user profiles and the distributions of the numbers users have searched in the website. Some of the data have no label, and I will leave them out in the fitting step. The distributions are highly biased that older, high educated user are less. I don't balance the training data as the test data must also be imbalanced. As we focus on the total accuracy, we needn't to balance the data. 
+![](./image/data1.png)
+![](./image/data2.png)
+
+To get the features from the words, two advanced techniques are used. `TF-IDF`, short for term frequency–inverse document frequency, is a numerical statistic that is intended to reflect how important a word is to a document in a collection or corpus. 
+
+![](./image/td-idf-graphic.png)
+
+Another technique is [`word2vec`](https://en.wikipedia.org/wiki/Word2vec) use shallow, two-layer neural networks that are trained to reconstruct linguistic contexts of words and to produce word embeddings. As the architecture shown in [the figure](http://mccormickml.com/2016/04/19/word2vec-tutorial-the-skip-gram-model/),  while you trained the neural network, the hidden layer are actually our word vectors. Here we trained our model with the model in [`gensim`](https://radimrehurek.com/gensim/) by seting the vertor size of 300, which means each our word will be represented with a vector with length of 300.
+![](./image/skip_gram_net_arch.png)
+
+
+Image bellow shows the architecture of my two level stack model. In the first level, we feed over 20 classification models with tf-tdf features and use the prediction as the input of the second layer. The second layer use those features combined with vector presentation of the search terms to feed another SVM model to make final predictions. 
 ![](./image/fig2.png)
+
+### Result
+
+|  	|  	Accuracy |  
+|---	|---	|
+|age|0.633|
+|education|0.637|
+|gender|0.855|
+|AVRAGE|0.708|
+
+
 
 ### Future improvement
 * Use Doc2Vec instead of word2vec	
@@ -53,7 +107,7 @@ We use the everage of word vectors to represent one users search term. It ignore
 * Use other trained model instead of fit myself		
 After I read the transfer learning, I am thinking why should I train the word2vec myself. There are many studies to fit model with larger documentations and could help a lot. One model is from google [word2vec](https://code.google.com/archive/p/word2vec/)
 
-* Make more data cleaning to get better features in the step of wordcut, choose stop words. Now I only tried to search the meaning of search terms, there are other features can be extracted manually.
+* Make more data cleaning to get better features in the step of wordcut, choose stop words. Some of the words are meaningless and won't help to build user profile. I can builder a better list of stop words. Now I only tried to search the meaning of search terms, there are other features can be extracted manually. When I campare the length, I found high educated people could use more space in there seach terms. This has not been included in my current version.
 
 * Use XGBoost or Neural Network models. 
 
