@@ -83,6 +83,7 @@ To get the features from the words, two advanced techniques are used. `TF-IDF`, 
 ![](./image/td-idf-graphic.png)
 
 Another technique is [`word2vec`](https://en.wikipedia.org/wiki/Word2vec) use shallow, two-layer neural networks that are trained to reconstruct linguistic contexts of words and to produce word embeddings. As the architecture shown in [the figure](http://mccormickml.com/2016/04/19/word2vec-tutorial-the-skip-gram-model/),  while you trained the neural network, the hidden layer are actually our word vectors. Here we trained our model with the model in [`gensim`](https://radimrehurek.com/gensim/) by seting the vertor size of 300, which means each our word will be represented with a vector with length of 300.
+
 ![](./image/skip_gram_net_arch.png)
 
 
@@ -90,6 +91,7 @@ Image bellow shows the architecture of my two level stack model. In the first le
 ![](./image/fig2.png)
 
 ### Result
+The accuracy here is calculate from the ratio of the correct labeled data in the whole number of users. The prediction should be exact the same as the true value to be considered as "correct prediction". For example the age label is "1" (0-18 years old), so only prediction of "1" is correct and "2"(19-23), "3" (24-30) are both uncorrect in this metrics.
 
 |  	|  	Accuracy |  
 |---	|---	|
@@ -102,14 +104,21 @@ Image bellow shows the architecture of my two level stack model. In the first le
 
 ### Future improvement
 * Use Doc2Vec instead of word2vec	
+
 We use the everage of word vectors to represent one users search term. It ignores the informations of the sequence of words. Doc2Vec provide a better semantic representation for the whole sentences/paragraphs/documents. 
 
-* Use other trained model instead of fit myself		
+* Transfer learning 
+
+We can use other trained model instead of fit myself.
 After I read the transfer learning, I am thinking why should I train the word2vec myself. There are many studies to fit model with larger documentations and could help a lot. One model is from google [word2vec](https://code.google.com/archive/p/word2vec/)
 
-* Make more data cleaning to get better features in the step of wordcut, choose stop words. Some of the words are meaningless and won't help to build user profile. I can builder a better list of stop words. Now I only tried to search the meaning of search terms, there are other features can be extracted manually. When I campare the length, I found high educated people could use more space in there seach terms. This has not been included in my current version.
+* More feature engines
+
+Make more data cleaning to get better features in the step of wordcut, choose stop words. Some of the words are meaningless and won't help to build user profile. I can builder a better list of stop words. Now I only tried to search the meaning of search terms, there are other features can be extracted manually. When I campare the length, I found high educated people could use more space in there seach terms. This has not been included in my current version.
 
 * Use XGBoost or Neural Network models. 
+
+Even use part of the data to feed into my training model, I can also get pretty good results. This shows that my model could be too simple and doesn't use all the informations. I can use a much more complexity  model to improve the results. One way is to build more traditional models into my stack model. The other way is to use more general models like XGBoost and Neural Network models.
 
 * Use Topic Model like LDA
 
