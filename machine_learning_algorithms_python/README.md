@@ -52,6 +52,10 @@ Key concept to begin neural networks:
  
 * [k-means](./) The above is supervised learning with a set of labeled data. Here we will implement an unsupervised learning with k-means. In the datasets, you know the locations of all your local users. You will choose meetup locations that make it convenient for everyone to attend. You will also use the datasets to implement a buttom up clustering method. Both of these two methods are not effecient in big datasets. scikit-learn has an entire module [sklearn.cluster](http://scikit-learn.org/stable/modules/clustering.html) that contains several clus‐ tering algorithms including KMeans and the Ward hierarchical clustering (different criterion) algorithm. SciPy has two clustering models scipy.cluster.vq (which does k-means) and scipy.cluster.hierarchy (different). 
 
+* [LSTM](./LSTM.py) There is a good blog [Understanding LSTM Networks](http://colah.github.io/posts/2015-08-Understanding-LSTMs/) that explains LSTM starting from RNN. 
+
+![](./fig/LSTM3-chain.png width = 100)
+
 * [MapReduce]()
 
 
