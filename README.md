@@ -2,6 +2,10 @@
 
 These are parts of machine learning projects I have done.
 
+### Machine Learning Algorithm Implemented by Python
+
+[ML\_python\_implementation](./ML_python_implementation) These file are python implementations for many machine learning algorithms. For most algorithms, test data are also included, so you can train and make your own predictions. They are very useful for understanding the details. 
+
 ### User Profile with Raw Search Terms Competition
 [User profile](project-Competition-User_Profile_Raw_Search_Terms) Developed two-layer stacking machine learning model with SVM, linear regression, Naive Bayes techniques. Generated comprehensible user profiles about gender, age, education based on 20k raw user search terms and captured valuable behavior patterns. Predicted user profiles with an accuracy above70% (top 5% in 900 teams).
 
